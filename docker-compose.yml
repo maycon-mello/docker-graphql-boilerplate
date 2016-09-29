@@ -1,0 +1,22 @@
+version: "2"
+services:
+  graphql:
+    build: ./graphql
+    volumes:
+      - ./graphql:/app
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  web1:
+    build: ./web
+    volumes:
+      - ./web:/app
+    ports:
+      - "8000:3000"
+    links:
+      - graphql
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
