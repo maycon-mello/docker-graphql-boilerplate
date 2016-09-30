@@ -3,7 +3,7 @@ services:
   graphql:
     build: ./graphql
     volumes:
-      - ./graphql:/app
+      - ./graphql:/usr/src/app
     ports:
       - "3000:3000"
     links:
@@ -11,9 +11,9 @@ services:
   web1:
     build: ./web
     volumes:
-      - ./web:/app
+      - ./web:/usr/src/app
     ports:
-      - "8000:3000"
+      - "8000:8000"
     links:
       - graphql
   mongo:
