@@ -15,7 +15,7 @@ class Widget {}
 var viewer = new User();
 viewer.id = '1';
 viewer.name = 'Anonymous';
-var widgets = ['Widhte 2', 'Widget 3', 'Test'].map((name, i) => {
+var widgets = ['Widhte 5', 'Widget 3', 'Test'].map((name, i) => {
   var widget = new Widget();
   widget.name = name;
   widget.id = `${i}`;

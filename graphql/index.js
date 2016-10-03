@@ -1,4 +1,3 @@
-import chokidar from 'chokidar';
 import express from 'express';
 import graphQLHTTP from 'express-graphql';
 import path from 'path';
@@ -8,24 +7,22 @@ import {exec} from 'child_process';
 const app = express();
 const GRAPHQL_PORT = 3000;
 
-clean('./schema/schema');
+clean('./schema');
 require('./scripts/updateSchema');
-const {Schema} = require('./schema/schema');
+const { Schema } = require('./schema');
 
 /**
  * Exposes schema.json to
  * This file is needed to transpile relay code outside this container
  *
  */
-app.get('/schema.json', (req, res) => res.sendFile(__dirname + '/schema/schema.json'));
+app.get('/schema.json', (req, res) => res.sendFile(__dirname + '/build/schema.json'));
 
 app.use('/', graphQLHTTP({
   graphiql: true,
   pretty: true,
   schema: Schema,
 }));
-
-//console.log(process.env);
 
 const graphQLServer = app.listen(GRAPHQL_PORT, () => {
   console.log(
